@@ -1,0 +1,22 @@
+{
+    "laptops": [
+        {
+            "id": 1,
+            "title": "Asus TUF Gaming",
+            "price": 1199,
+            "img": "asus.webp"
+        },
+        {
+            "id": 2,
+            "title": "Lenovo IdeaPad Gaming",
+            "price": 1299,
+            "img": "lenovo.jpeg"
+        },
+        {
+            "id": 3,
+            "title": "Acer Nitro 5",
+            "price": 1399,
+            "img": "acer.webp"
+        }
+    ]
+}

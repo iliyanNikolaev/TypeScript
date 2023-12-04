@@ -1,5 +1,8 @@
 export const Home = () => {
   return (
-    <div>Home</div>
+    <section>
+      <h1>Shopping Cart</h1>
+      <p>Welcome to our laptop store...</p>
+    </section>
   )
 }
