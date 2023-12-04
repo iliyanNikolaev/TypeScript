@@ -1,23 +1,30 @@
-import { useState } from "react";
-export interface IUser {
+import { useEffect, useState } from "react";
+
+interface IUser {
   email: string,
   password: string
 }
 
-export const Login = () => {
-  const [loggedUser, setLoggedUser] = useState<IUser | null>(() => {
-    const userInSessionStorage = JSON.parse(sessionStorage.getItem('ts-reactDemoUser')!);
-    if (userInSessionStorage) {
-      return userInSessionStorage;
-    }
-    return null;
-  });
+type LoggedUserType = IUser | null;
 
+const checkSessionStorageForUser = (): LoggedUserType => {
+  const userInSessionStorage: string | null = sessionStorage.getItem('ts-reactDemoUser');
+  if (userInSessionStorage) return JSON.parse(userInSessionStorage);
+  return null;
+}
+
+export const Login = () => {
+  const [loggedUser, setLoggedUser] = useState<LoggedUserType>(null);
+  useEffect(() => {
+    const isExist = checkSessionStorageForUser();
+    setLoggedUser(isExist)
+  }, []);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   const onLogoutHandler = () => {
     setLoggedUser(null);
+    sessionStorage.removeItem('ts-reactDemoUser');
   }
 
   const onLoginHandler = (e: React.MouseEvent<HTMLFormElement>): void => {
@@ -26,7 +33,7 @@ export const Login = () => {
     sessionStorage.setItem('ts-reactDemoUser', JSON.stringify({ email, password }));
 
     setLoggedUser({
-      email,
+      email: email || 'anonymous',
       password
     });
 

@@ -7,7 +7,7 @@ interface IPost {
     body: string
 }
 
-const getData: () => Promise<IPost[]> = async () => {
+const getData = async (): Promise<IPost[]>=> {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts');
     if (!res.ok) {
         throw new Error('Failed to fetch data');
@@ -24,7 +24,7 @@ export const Dashboard = () => {
     useEffect(() => {
         getData()
             .then(data => setPosts(data.slice(-20)))
-            .catch(err => setError(err.message));
+            .catch(err => setError(err.message))
     }, []);
 
     const handleDelete = (e: React.MouseEvent<HTMLButtonElement>, id: number): void => {
