@@ -1,24 +1,54 @@
+import { useState } from "react";
+export interface IUser {
+  email: string,
+  password: string
+}
 
 export const Login = () => {
-  
-  const onLoginHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const [loggedUser, setLoggedUser] = useState<IUser | null>(null);
+
+  // --- PERSISTED STATE ---
+  // () => {
+  // const userInSessionStorage = JSON.parse(sessionStorage.getItem('ts-reactDemoUser'));
+  // if(userInSessionStorage){
+  //   setLoggedUser(userInSessionStorage);
+  // }
+  // return null;
+  // }
+
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
+  const onLoginHandler = (e: React.MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
 
-    console.log('login')
+    sessionStorage.setItem('ts-reactDemoUser', JSON.stringify({ email, password }));
+
+    setLoggedUser({
+      email,
+      password
+    });
   }
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setEmail(e.target.value);
+  }
+
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setPassword(e.target.value);
   }
 
   return (
     <section className="view-section">
-        <h1>Login</h1>
-        <form className="login-form">
-            <input type="email" name="email" placeholder="email" onChange={onChange} />
-            <input type="password" name="password" placeholder="password" onChange={onChange} />
-            <button onClick={onLoginHandler}>Login</button>
-        </form>
+      <h1>Login</h1>
+      {loggedUser
+        ? <p>you logged with {loggedUser.email}</p>
+        : <form className="login-form">
+          <input type="email" name="email" placeholder="email" value={email} onChange={onEmailChange} />
+          <input type="password" name="password" placeholder="password" value={password} onChange={onPasswordChange} />
+          <button onClick={onLoginHandler}>Login</button>
+        </form>}
+
     </section>
   )
 }

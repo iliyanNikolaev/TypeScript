@@ -2,6 +2,22 @@ body {
     margin: 0;
 }
 
+.theme {
+    transition: 1s all ease;
+    width: 100vw;
+    height: 100vh;
+}
+
+.Light {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.Dark {
+    background-color: rgb(30, 30, 30);
+    color: lightgray;
+}
+
 .navigation {
     display: flex;
     justify-content: center;
@@ -27,15 +43,22 @@ body {
     background-color: lightgray;
 }
 
-.view-section{
+.view-section {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.login-form{
+.login-form {
     display: flex;
     flex-direction: column;
     width: 20%;
     align-items: center;
+}
+
+.theme-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
 }
