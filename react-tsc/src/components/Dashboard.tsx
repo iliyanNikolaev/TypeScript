@@ -29,7 +29,7 @@ export const Dashboard = () => {
 
     return (
         <>
-            <section>
+            <section className="view-section">
                 <h1>Dashboard</h1>
                 {error
                     ? <p>{error}</p>
