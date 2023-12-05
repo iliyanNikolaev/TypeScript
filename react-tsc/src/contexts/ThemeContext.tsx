@@ -7,7 +7,7 @@ interface IInitState {
 
 const init_state: IInitState = {
     mode: 'Light',
-    toggle: () => { }
+    toggle: () => {}
 }
 
 export const ThemeContext = createContext(init_state);
