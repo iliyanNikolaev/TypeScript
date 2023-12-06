@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useEffect, useState } from 'react';
+import { createContext, ReactElement, useContext } from 'react';
 
 export interface ILaptop {
     id: number,
@@ -8,33 +8,20 @@ export interface ILaptop {
 }
 
 interface LaptopsContextProps {
-    getLaptops: () => ILaptop[],
+    getLaptops: () => Promise<ILaptop[]>,
 }
 
 const initValue: LaptopsContextProps = { 
-    getLaptops: () => []
+    getLaptops: () => new Promise(resolve => resolve([]))
 };
 
 const LaptopsContext = createContext<LaptopsContextProps>(initValue);
 
 export const LaptopsContextProvider = ({ children }: { children: ReactElement | ReactElement[]}) => {
-    
-    const [laptops, setLaptops] = useState<ILaptop[]>([]);
 
-    useEffect(() => {
-        async function fetchLaptops(): Promise<ILaptop[]> {
-            const response = await fetch('http://localhost:6161/laptops');
-            const data = await response.json();
-            return data;
-        }
-
-        fetchLaptops()
-            .then(data => setLaptops(data))
-            .catch(err => console.log(err.message));
-    }, [])
-
-    function getLaptops(): ILaptop[] {
-        return laptops;
+    async function getLaptops(): Promise<ILaptop[]> {
+        const res = await fetch('http://localhost:6161/laptops');
+        return res.json();
     }
 
     const ctx = {
@@ -46,6 +33,11 @@ export const LaptopsContextProvider = ({ children }: { children: ReactElement | 
             {children}
         </LaptopsContext.Provider>
     )
+}
+
+export const useLaptopContext = (): LaptopsContextProps => {
+    const ctx = useContext(LaptopsContext)
+    return ctx;
 }
 
 

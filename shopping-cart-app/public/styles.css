@@ -30,3 +30,29 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+h1, h2 {
+    text-align: center;
+}
+
+.list-container {
+    display: flex;
+    gap: 12px;
+}
+
+.dashboard-item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    border: 1px solid;
+}
+
+.dashboard-item-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid;
+}
