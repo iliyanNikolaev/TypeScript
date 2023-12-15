@@ -1,1 +1,17 @@
 <h1>catalog page</h1>
+
+<% if(!cars) {%>
+    <p>error in db</p>
+    <% } %>
+
+        <% if(cars?.length==0) { %>
+            <p>no records in db</p>
+            <% } %>
+                <ul>
+                    <% cars?.map(function(car){ %>
+                        <li>
+                            <%= car.brand %>
+                                <%= car.model %>
+                        </li>
+                        <% }) %>
+                </ul>
