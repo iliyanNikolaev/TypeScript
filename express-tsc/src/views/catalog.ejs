@@ -10,8 +10,10 @@
                 <ul>
                     <% cars?.map(function(car){ %>
                         <li>
-                            <%= car.brand %>
-                                <%= car.model %>
+                            brand: <%= car.brand %>,
+                                model: <%= car.model %>,
+                                year: <%= car.year %>
+
                         </li>
                         <% }) %>
                 </ul>
