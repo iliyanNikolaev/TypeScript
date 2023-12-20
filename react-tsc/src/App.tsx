@@ -5,6 +5,7 @@ import { Home } from './components/Home';
 import { Login } from './components/Login';
 import { ChangeTheme } from './components/ChangeTheme';
 import { ReducerDemo } from './components/ReducerDemo';
+import { PatternCounter } from './components/youtube-solid-react/PatternCounter';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Link to='/change-theme'>Change theme</Link>
       <Link to='/login'>Login</Link>
       <Link to='/usereducer'>useReducer demo</Link>
+      <Link to='/pattern'>Pattern</Link>
     </nav>
     
     <Routes>
@@ -25,6 +27,7 @@ function App() {
       <Route path='/change-theme' element={<ChangeTheme />}></Route>
       <Route path='/login' element={<Login />}></Route>
       <Route path='/usereducer' element={<ReducerDemo />}></Route>
+      <Route path='/pattern' element={<PatternCounter />}></Route>
     </Routes>
     </>
   )
