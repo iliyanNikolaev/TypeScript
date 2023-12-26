@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -24,30 +24,46 @@ export class UsersService {
   }
 
   findAll(query: Query): User[] {
-    if(query.role) return this.users.filter(u => u.role == query.role);
+    if (query.role) {
+
+      if (query.role == 'ADMIN' || query.role == 'USER' || query.role == 'EMPLOYEE') {
+        return this.users.filter(u => u.role == query.role);
+      }
+
+      throw new NotFoundException('invalid role');
+    }
+
     return this.users;
   }
 
   findOne(id: number): User {
     const searched = this.users.find(u => u.id == id);
-    if(!searched) //error: this user not exist
-    
+    if (!searched) {
+      throw new NotFoundException('user not exist');
+    }
+
     return searched;
   }
 
-  update(id: number, updateUserDto: UpdateUserDto): { username: string, id: number } {
+  update(id: number, updateUserDto: UpdateUserDto): User {
     const searched = this.users.find(u => u.id == id);
-    if (!searched) //error: this user not exist
+
+    if (!searched) {
+      throw new NotFoundException('user not exist');
+    }
 
     this.users = this.users.filter(u => u.id != id);
-    const updated = { id: searched.id, password: searched.password, ...updateUserDto, role: 'USER' };
-    this.users.push(updated);
-    return { id: updated.id, username: updated.username}
+
+    this.users.push({ ...searched, ...updateUserDto });
+
+    return { ...searched, ...updateUserDto };
   }
 
   remove(id: number): { ok: true } {
     const searched = this.users.find(u => u.id == id);
-    if(!searched) // error: this user not exist
+    if (!searched) {
+      throw new NotFoundException('user not exist')
+    }
 
     this.users = this.users.filter(u => u.id != id);
     return { ok: true }
