@@ -1,6 +1,6 @@
 import EventEmitter from "events";
 
-export{}
+export {}
 
 const emitter: EventEmitter = require('./observer');
 
