@@ -13,24 +13,22 @@ const server = createServer((req: IncomingMessage, res: ServerResponse) => {
 });
 
 async function handleGET(req: IncomingMessage, res: ServerResponse) {
-    if (req.url == '/') {
-        fs.readFile('./static/index.html', (err, file) => {
-            if(err) {
-                res.writeHead(404);
-                res.end();
-            }
-            res.writeHead(200, {
-                'Content-Type': 'text/html'
-            });
-            res.write(file);
-            res.end();
-        });
-
-    } else {
-        res.writeHead(404);
-        res.end();
+    let path = req.url;
+    
+    if (path == '/') {
+        path = '/index.html'
     }
+
+    fs.stat('./static' + path,(err, stat) => {
+        if(err || !stat.isFile()) {
+            res.writeHead(404);
+            res.end();
+        } else {
+            fs.createReadStream('./static' + path).pipe(res);
+        }
+    });
 }
+
 
 async function handlePOST(req: IncomingMessage, res: ServerResponse) {
     const body: string[] = [];
