@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "name": "john",
+    "email": "john@abv.bg",
+    "role": "ADM"
+  },
+  {
+    "id": "2",
+    "name": "megan",
+    "email": "megan@abv.bg",
+    "role": "EMP"
+  },
+  {
+    "id": "3",
+    "name": "jane",
+    "email": "jane@abv.bg",
+    "role": "STU"
+  },
+  {
+    "id": "166",
+    "name": "ilich",
+    "email": "ilichviva@gmail.com",
+    "role": "ADM"
+  },
+  {
+    "id": "624",
+    "name": "jackson",
+    "email": "jackson@abv.bg",
+    "role": "STU"
+  }
+]

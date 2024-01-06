@@ -1,0 +1,27 @@
+body{
+    background-color: black;
+    color: white;
+    margin: 0;
+}
+
+nav{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    background-color: black;
+    border-bottom: 1px solid white;
+    padding: 6px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
