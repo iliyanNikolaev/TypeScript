@@ -1,4 +1,4 @@
-const errorContainer = document.querySelectorAll('#createErrorMsg');
+const errorContainer = document.querySelector('#createErrorMsg');
 const inputs = document.querySelectorAll('#createForm input');
 
 inputs.forEach(x => {
