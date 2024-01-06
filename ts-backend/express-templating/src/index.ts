@@ -1,6 +1,6 @@
 import express from 'express';
 import { create } from 'express-handlebars';
-import { logger } from './util/middlewares';
+import { logger } from './middlewares/logger';
 import { router } from './router';
 
 const app = express();

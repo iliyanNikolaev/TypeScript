@@ -1,2 +1,11 @@
 <h1>Home page</h1>
-<p>Welcome to our site...</p>
+
+{{#if users}}
+<ul>
+    {{#each users}}
+    {{>userCard}}
+    {{/each}}
+</ul>
+{{else}}
+<p>no users</p>
+{{/if}}
