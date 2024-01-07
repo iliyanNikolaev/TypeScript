@@ -15,6 +15,7 @@ router.use('/users', usersController);
 router.use('/posts', postsController);
 router.use('/create', createController);
 router.use('/connections', connectionsController);
+
 router.use('/api', apiController);
 
 router.all('*', (req: Request, res: Response) => {

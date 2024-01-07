@@ -1,8 +1,8 @@
-import express from 'express';
-import { router } from './router';
 import { dbConnect } from './config/dbConnect';
+import express from 'express';
 import { appConfig } from './config/appConfig';
-import { successMessage } from './utils/startLogger';
+import { router } from './router';
+import { successMessage } from './utils/successMessage';
 
 start();
 
