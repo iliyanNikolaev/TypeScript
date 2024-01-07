@@ -1,0 +1,11 @@
+<h1>catalog</h1>
+
+{{#if users}}
+<ul>
+    {{#each users}}
+    {{>userCard}}
+    {{/each}}
+</ul>
+{{else}}
+<p>no users</p>
+{{/if}}

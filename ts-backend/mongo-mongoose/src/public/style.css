@@ -1,0 +1,33 @@
+body{
+    background-color: #101010;
+    color: white;
+    margin: 0;
+    font-family: system-ui, -apple-system;
+}
+
+nav{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    background-color: #101010;
+    border-bottom: 1px solid white;
+    padding: 6px;
+}
+
+a{
+    text-decoration: none;
+    color: lightblue;
+}
+
+a:hover{
+    scale: 1.1;
+    background-color: grey
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
