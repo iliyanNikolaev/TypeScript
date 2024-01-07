@@ -1,0 +1,20 @@
+<h1>profile</h1>
+<p>First name: <span class="bold">{{user.firstName}}</span></p>
+<p>Last name: <span class="bold">{{user.lastName}}</span></p>
+<p>Email: <span class="bold">{{user.email}}</span></p>
+<img class="coverPic" src="{{user.coverPic}}" />
+<img class="profilePic" src="{{user.profilePic}}" />
+
+<a href="/connections/{{user._id}}">{{user.connections.length}} connections</a>
+
+<div class="postsContainer">
+    {{#if posts}}
+    <div class="postsContainer">
+        {{#each posts}}
+        {{>postCard}}
+        {{/each}}
+    </div>
+    {{else}}
+    <p>no posts</p>
+    {{/if}}
+</div>

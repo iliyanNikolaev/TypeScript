@@ -1,0 +1,11 @@
+<h1>posts</h1>
+
+{{#if posts}}
+<div class="postsContainer">
+    {{#each posts}}
+        {{>postCard}}
+    {{/each}}
+</div>
+{{else}}
+<p>no posts</p>
+{{/if}}

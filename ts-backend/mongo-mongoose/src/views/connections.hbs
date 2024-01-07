@@ -1,0 +1,15 @@
+<h1>connections</h1>
+
+{{#if connections}}
+<ul>
+    {{#each connections}}
+    <p>
+        {{_id}}
+        {{firstName}}
+        {{lastName}}
+    </p>
+    {{/each}}
+</ul>
+{{else}}
+<p>no connections</p>
+{{/if}}
