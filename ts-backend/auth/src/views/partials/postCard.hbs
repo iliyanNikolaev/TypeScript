@@ -1,0 +1,9 @@
+<div class="postItemContainer">
+    <p>{{_id}}</p>
+    <p>Author: {{owner.firstName}} {{owner.firstName}} <a href="/users/{{owner._id}}">owner profile</a></p>
+    <img src="{{owner.profilePic}}" alt="avatar" class="avatar">
+    <p>{{textContent}}</p>
+    <img src="{{img}}" alt="post img" class="postImg">
+    <a href="/likes">{{likes.length}} likes</a>
+    <a href="/comments">{{comments.length}} comments</a>
+</div>

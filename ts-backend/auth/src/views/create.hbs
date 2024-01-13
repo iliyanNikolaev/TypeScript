@@ -1,0 +1,20 @@
+<h2>create user</h2>
+<form method="POST" action="/users" id="createForm">
+    <input type="text" name="firstName" placeholder="first name...">
+    <input type="text" name="lastName" placeholder="last name...">
+    <input type="email" name="email" placeholder="email...">
+    <input type="password" name="password" placeholder="password...">
+    <button id="createBtn">Create user</button>
+</form>
+
+<h2>create post</h2>
+<form method="POST" action="/posts" id="createForm">
+    <input type="text" name="owner" placeholder="ownerId...">
+    <input type="text" name="textContent" placeholder="textContent...">
+    <input type="text" name="img" placeholder="imgUrl...">
+    <button id="createBtn">Create post</button>
+</form>
+
+
+<div id="createErrorMsg"></div>
+<script src="/js/createUser.js" defer></script>
