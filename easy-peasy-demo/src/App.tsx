@@ -1,16 +1,23 @@
 import { StoreProvider } from 'easy-peasy'
-import './App.css'
 import { Add } from './components/Add'
 import { List } from './components/List'
 import { store } from './store'
+import styled from 'styled-components'
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 function App() {
-  
+
   return (
     <StoreProvider store={store}>
-      <List />
-      <Add />
+      <Wrapper>
+        <List />
+        <Add />
+      </Wrapper>
     </StoreProvider>
   )
 }

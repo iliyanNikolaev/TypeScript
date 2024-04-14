@@ -16,7 +16,6 @@ export const Add = () => {
 
   return (
     <form onSubmit={ addFormSubmit }>
-
       <h2>add new item</h2>
       <input value={content} onChange={(e) => setContent(e.target.value)} type="text" placeholder="content..." />
       <button>Create</button>
