@@ -1,10 +1,13 @@
 import './App.css'
+import { Add } from './components/Add'
+import { List } from './components/List'
 
 function App() {
 
   return (
     <>
-      <span>hello, world</span>
+      <List />
+      <Add />
     </>
   )
 }
