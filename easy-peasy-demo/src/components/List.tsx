@@ -9,7 +9,7 @@ export const List = () => {
     <>
       <h2>list</h2>
       <ul>
-        { todos.map(x => <Item item={x} />)}
+        { todos.map(x => <Item key={x.id} item={x} />)}
       </ul>
     </>
   );

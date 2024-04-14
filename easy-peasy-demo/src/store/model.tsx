@@ -1,3 +1,4 @@
+import { action } from "easy-peasy";
 import { StoreT } from "../types/Store";
 
 export const model: StoreT = {
@@ -17,5 +18,12 @@ export const model: StoreT = {
             content: 'third todo',
             completed: false
         },
-    ]
+    ],
+    addTodo: action((state, payload) => {
+        const randomId = Number(Math.random()
+                            .toString()
+                            .slice(-4));
+                            
+        state.todos = [...state.todos, { id: randomId, content: payload, completed: false }];
+    })
 }

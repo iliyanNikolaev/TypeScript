@@ -1,5 +1,7 @@
+import { Action } from "easy-peasy"
 import { Todo } from "./Todo"
 
-export type StoreT = {
-    todos: Todo[]
+export interface StoreT {
+    todos: Todo[],
+    addTodo: Action<this, string>
 }
