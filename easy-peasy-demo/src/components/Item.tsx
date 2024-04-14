@@ -1,12 +1,14 @@
 import { useStoreActions } from "../hooks"
 import { Todo } from "../types/Todo"
+
 export const Item = ({
   item
 }: {
   item: Todo
 }) => {
-  const toggleTodo = useStoreActions(state => state.toggleTodo);
-  const deleteTodo = useStoreActions(state => state.deleteTodo);
+
+  const { toggleTodo, deleteTodo } = useStoreActions(state => state);
+
   return (
     <>
       <li>
