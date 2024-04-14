@@ -1,10 +1,9 @@
-import { useStoreState } from "easy-peasy";
-import { StoreT } from "../types/Store";
+import { useStoreState } from "../hooks";
 import { Item } from "./Item";
 
 
 export const List = () => {
-  const todos = useStoreState((state: StoreT) => state.todos);
+  const todos = useStoreState((state) => state.todos);
   
   return (
     <>
