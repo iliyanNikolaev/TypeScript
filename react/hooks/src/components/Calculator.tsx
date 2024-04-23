@@ -1,4 +1,25 @@
+import { useState } from "react";
 import styled from "styled-components";
+
+enum KeyNum {
+  One = "1",
+  Two = "2",
+  Three = "3",
+  Four = "4",
+  Five = "5",
+  Six = "6",
+  Seven = "7",
+  Eight = "8",
+  Nine = "9",
+  Zero = "0",
+}
+
+enum MathAction {
+  Collect,
+  Subtract,
+  Multiply,
+  Divide,
+}
 
 const StyledDiv = styled.div`
   display: flex;
@@ -63,51 +84,102 @@ const StyledDiv = styled.div`
     #keyboard-fourth-row span {
       padding: 0.5rem;
       border: 1px solid;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 `;
 
 export const Calculator = () => {
+  const [savedNum, setSavedNum] = useState<number>();
+  const [currentAction, setCurrentAction] = useState<MathAction>();
+  const [displayValue, setDisplayValue] = useState<string>('');
+
+  const onClearClick = () => {
+    setSavedNum(undefined);
+    setCurrentAction(undefined);
+    setDisplayValue('');
+  };
+
+  const onEqClick = () => {
+    if(displayValue && savedNum){
+      switch (currentAction) {
+        case MathAction.Collect:
+            setDisplayValue(state => (Number(state) + savedNum).toString());
+          break;
+        case MathAction.Multiply:
+          setDisplayValue(state => (Number(state) * savedNum).toString());
+          break;
+        case MathAction.Divide:
+          setDisplayValue(state => (savedNum / Number(state)).toString());
+          break;
+        case MathAction.Subtract:
+          setDisplayValue(state => (savedNum - Number(state)).toString());
+          break;
+        default: ;
+      }
+
+      setSavedNum(Number(displayValue));
+      setCurrentAction(undefined);
+    }
+  };
+
+  const onMathActionClick = (action: MathAction): void => {
+    setSavedNum(Number(displayValue));
+    setCurrentAction(action);
+    setDisplayValue("");
+  };
+
+  const onNumClick = (num: KeyNum): void => {
+    setDisplayValue((state) => (state += num));
+  };
+
   return (
     <StyledDiv>
       <div id="display">
-        <div id="display-content"></div>
+        <div id="display-content">{displayValue}</div>
         <div id="display-tips">
           <div id="tips-first-row">
-            <span>+</span>
+            <span onClick={() => onMathActionClick(MathAction.Collect)}>+</span>
           </div>
           <div id="tips-second-row">
-            <span>x</span>
-            <span>/</span>
+            <span onClick={() => onMathActionClick(MathAction.Multiply)}>
+              x
+            </span>
+            <span onClick={() => onMathActionClick(MathAction.Divide)}>/</span>
           </div>
           <div id="tips-third-row">
-            <span>-</span>
+            <span onClick={() => onMathActionClick(MathAction.Subtract)}>
+              -
+            </span>
           </div>
           <div id="tips-fourth-row">
-            <span>Ecuals</span>
-            <span>Clear</span>
+            <span onClick={onEqClick}>Ecuals</span>
+            <span onClick={onClearClick}>Clear</span>
           </div>
         </div>
       </div>
 
       <div id="keyboard">
         <div id="keyboard-first-row">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
+          <span onClick={() => onNumClick(KeyNum.One)}>1</span>
+          <span onClick={() => onNumClick(KeyNum.Two)}>2</span>
+          <span onClick={() => onNumClick(KeyNum.Three)}>3</span>
         </div>
         <div id="keyboard-second-row">
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
+          <span onClick={() => onNumClick(KeyNum.Four)}>4</span>
+          <span onClick={() => onNumClick(KeyNum.Five)}>5</span>
+          <span onClick={() => onNumClick(KeyNum.Six)}>6</span>
         </div>
         <div id="keyboard-third-row">
-          <span>7</span>
-          <span>8</span>
-          <span>9</span>
+          <span onClick={() => onNumClick(KeyNum.Seven)}>7</span>
+          <span onClick={() => onNumClick(KeyNum.Eight)}>8</span>
+          <span onClick={() => onNumClick(KeyNum.Nine)}>9</span>
         </div>
         <div id="keyboard-fourth-row">
-          <span>0</span>
+          <span onClick={() => onNumClick(KeyNum.Zero)}>0</span>
         </div>
       </div>
     </StyledDiv>
